@@ -1,3 +1,10 @@
+This is built for learning purposes
+[Demo](https://clone-bbcf1.web.app/)
+![](Capture.PNG)
+![](Capture1.PNG)
+![](Capture2.PNG)
+![](Capture3.PNG)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
