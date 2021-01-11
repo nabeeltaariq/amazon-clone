@@ -4,9 +4,16 @@ import './Header.css'
 import SearchIcon from '@material-ui/icons/Search'
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket'
 import { useStateValue } from './StateProvider'
+import { auth } from './firebase'
 
 function Header() {
   const [{ basket, user }] = useStateValue()
+
+  const login = () => {
+    if (user) {
+      auth.signOut()
+    }
+  }
   return (
     <div className='header'>
       <Link to='/'>
@@ -22,19 +29,21 @@ function Header() {
         <SearchIcon className='header__searchIcon' />
       </div>
       <div className='header__nav'>
-        <Link to='/login' className='header__links'>
-          <div className='header__option'>
-            <span className='header__optionLineOne'>Hello </span>
-            <span className='header__optionLineTwo'>Signin </span>
+        <Link to={!user && '/login'} className='header__links'>
+          <div onClick={login} className='header__option'>
+            <span className='header__optionLineOne'>Hello {user?.email}</span>
+            <span className='header__optionLineTwo'>
+              {user ? 'Signout' : 'Signin'}
+            </span>
           </div>
         </Link>
-        <Link to='/login' className='header__links'>
+        <Link to='/' className='header__links'>
           <div className='header__option'>
             <span className='header__optionLineOne'>Returns </span>
             <span className='header__optionLineTwo'> & Orders </span>
           </div>
         </Link>
-        <Link to='/login' className='header__links'>
+        <Link to='/' className='header__links'>
           <div className='header__option'>
             <span className='header__optionLineOne'>Your </span>
             <span className='header__optionLineTwo'>Prime </span>
